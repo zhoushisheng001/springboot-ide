@@ -26,12 +26,12 @@ public class UserLongin {
     @RequestMapping("/login")
     public String login (HttpServletRequest request, HttpServletResponse response) {
             HttpSession session = request.getSession();
-            String name = request.getParameter("name");
-            String password = request.getParameter("password");
-            logger.info("name:" + name + "password:" + password);
-            session.setAttribute("name",name);
-            session.setAttribute("password",password);
-            return "ok";
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        logger.info("name:" + name + "password:" + password);
+        session.setAttribute("name",name);
+        session.setAttribute("password",password);
+        return "ok";
     }
 
     @RequestMapping("/getUserInfo")
