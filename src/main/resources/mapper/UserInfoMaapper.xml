@@ -6,11 +6,21 @@
             <result ></result>
             <collection property="" select=""></collection>
        </resultMap>
-
        -->
+     <resultMap id="SearchBaseMapper" type="com.zhuguang.zhou.model.UserDto">
+           <id column="id" property="id"/>
+           <result column="username" property="username" jdbcType="VARCHAR"/>
+           <result column="birthday" property="birthday" jdbcType="DATE"/>
+           <result column="sex" property="sex" jdbcType="CHAR"/>
+           <result column="address" property="address" jdbcType="VARCHAR"/>
+     </resultMap>
 
-        <select id="getUserInfo">
-              select id,username,birthday,sex,address from user
+
+        <select id="getUserInfo" resultMap="SearchBaseMapper">
+            select id,username,birthday,sex,address from user where
+            <if test="name != null and name !=''">
+                username = #{name}
+            </if>
         </select>
 
     </mapper>
