@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 public class Zhou001 {
 
     @Test
-    public void test001(){
+    public void test001() {
         Consumer con = System.out::print;
         con.accept("jiangxi");
         //Supplier
@@ -21,7 +21,7 @@ public class Zhou001 {
     @Test
     public void test002() {
         UserInfo userInfo = (UserInfo) Proxy.newProxyInstance(UserInfo.class.getClassLoader(),
-                new Class[]{UserInfo.class},new UserInvocation());
+                new Class[]{UserInfo.class}, new UserInvocation());
         userInfo.getUserInfo();
     }
 
@@ -33,7 +33,7 @@ public class Zhou001 {
         st.buildName("张山");
         st.setAge(25);
 
-        StudentInfo.StudentBuild st1 =   new StudentInfo.StudentBuild();
+        StudentInfo.StudentBuild st1 = new StudentInfo.StudentBuild();
         st1.buildId("12312");
         st1.buildSex("男12");
         st1.buildName("张山12");
@@ -50,8 +50,8 @@ public class Zhou001 {
     }
 
     @Test
-    public void test005 () {
-        try{
+    public void test005() {
+        try {
             Userservice oder = new OrderServiceImpl();
             Class<? extends Userservice> clazz = oder.getClass();
             Method method = clazz.getMethod("getInfo", String.class);
@@ -59,7 +59,7 @@ public class Zhou001 {
             System.out.println("clzz1:" + clzz1);
             Class<?> clazz2 = method.getDeclaringClass();//或的该类的方法
             System.out.println("clazz2:" + clazz2);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

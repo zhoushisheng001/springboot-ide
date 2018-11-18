@@ -1,7 +1,7 @@
 package com.zhuguang.zhou.consont;
 
 public enum JavaCode {
-    SUCCLE("7681","成功");
+    SUCCLE("7681", "成功");
 
     private String Code;
 

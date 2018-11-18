@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 /**
- * @author  zhoushisheng
+ * @author zhoushisheng
  * 限定访问资源
  */
 public class SemapTest {
@@ -32,35 +32,35 @@ public class SemapTest {
         }
 
         @Override
-           public void run() {
-               try{
-                    se.acquire();//获得资源
-                    System.out.println("准备开始买票..." + num);
-                    Thread.sleep(2000);
-                    System.out.println("买好了票准备离开..." + num);
-                    Thread.sleep(2000);
-                    System.out.println("离开了..." + num);
-                    se.release();
-               }catch (Exception e){
-                   e.printStackTrace();
-               }
-           }
-       }
+        public void run() {
+            try {
+                se.acquire();//获得资源
+                System.out.println("准备开始买票..." + num);
+                Thread.sleep(2000);
+                System.out.println("买好了票准备离开..." + num);
+                Thread.sleep(2000);
+                System.out.println("离开了..." + num);
+                se.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-       private void myRunnner () {
-           ExecutorService executorPool = Executors.newCachedThreadPool();
-           //NumberInc inc = new NumberInc();
-           Semaphore se = new Semaphore(2);
-           for (int i=0;i<10;i++) {
-                MyTask task = new MyTask(se,i);
-                executorPool.execute(task);
-           }
-           executorPool.shutdown();
-       }
+    private void myRunnner() {
+        ExecutorService executorPool = Executors.newCachedThreadPool();
+        //NumberInc inc = new NumberInc();
+        Semaphore se = new Semaphore(2);
+        for (int i = 0; i < 10; i++) {
+            MyTask task = new MyTask(se, i);
+            executorPool.execute(task);
+        }
+        executorPool.shutdown();
+    }
 
-       public static void main(String[] args) {
-           SemapTest test = new SemapTest();
-           test.myRunnner();
-       }
+    public static void main(String[] args) {
+        SemapTest test = new SemapTest();
+        test.myRunnner();
+    }
 
 }

@@ -14,8 +14,8 @@ import java.util.Properties;
  */
 /*@Intercepts(value = {@Signature(type=Executor.class,method="",args={}),
          @Signature(type=Executor.class,method="",args={})})*/
-@Intercepts(value = {@Signature(type=Executor.class,method="query",args={MappedStatement.class,
-        Object.class,RowBounds.class,ResultHandler.class})})
+@Intercepts(value = {@Signature(type = Executor.class, method = "query", args = {MappedStatement.class,
+        Object.class, RowBounds.class, ResultHandler.class})})
 public class MyBatisInter implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -24,7 +24,7 @@ public class MyBatisInter implements Interceptor {
 
     @Override
     public Object plugin(Object target) {
-        if(target instanceof Executor) {
+        if (target instanceof Executor) {
             target = Plugin.wrap(target, this);
         }
         return target;

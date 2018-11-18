@@ -9,11 +9,11 @@ import org.springframework.context.ApplicationContext;
 import static org.springframework.boot.SpringApplication.run;
 
 @SpringBootApplication
-@ServletComponentScan(basePackages={"com.zhuguang.zhou.file"})
+@ServletComponentScan(basePackages = {"com.zhuguang.zhou.file"})
 public class SpringbootIdeApplication {
 
     public static void main(String[] args) {
-       ApplicationContext applicationContext =   SpringApplication.run(SpringbootIdeApplication.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(SpringbootIdeApplication.class, args);
         ApplicationUtils.setApplicationContext(applicationContext);
     }
 }

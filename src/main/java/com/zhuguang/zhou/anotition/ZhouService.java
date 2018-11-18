@@ -7,5 +7,5 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 public @interface ZhouService {
 
-    String value () default "";
+    String value() default "";
 }

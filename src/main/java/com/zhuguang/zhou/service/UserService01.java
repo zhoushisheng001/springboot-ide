@@ -15,7 +15,7 @@ public class UserService01 {
     private UserInfoMapper userInfo;
 
     public List<UserDto> getUserInfo(String name) {
-         return userInfo.getUserInfo(name);
+        return userInfo.getUserInfo(name);
     }
 
 }

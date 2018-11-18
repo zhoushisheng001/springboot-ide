@@ -22,10 +22,10 @@ public class MyHttpSesssion implements HttpSession {
     private ThreadLocal<String> thread = new ThreadLocal<>();
 
     public MyHttpSesssion(HttpServletRequest request, HttpServletResponse response) {
-          this.request = request;
-          this.response = response;
-          ApplicationContext applicationContext = ApplicationUtils.getApplicationContext();
-          redisTemplate = applicationContext.getBean("redisTemplate",RedisTemplate.class);
+        this.request = request;
+        this.response = response;
+        ApplicationContext applicationContext = ApplicationUtils.getApplicationContext();
+        redisTemplate = applicationContext.getBean("redisTemplate", RedisTemplate.class);
     }
 
 
@@ -66,12 +66,12 @@ public class MyHttpSesssion implements HttpSession {
 
     @Override
     public Object getAttribute(String name) {
-           //request.getSession().getAttribute(name)
+        //request.getSession().getAttribute(name)
         String sessionId = getSessionCookId();
-        List<JSONObject> strList = redisTemplate.opsForList().range(sessionId,0,-1);
+        List<JSONObject> strList = redisTemplate.opsForList().range(sessionId, 0, -1);
         for (JSONObject json : strList) {
             // JSONObject json = JSON.parseObject(str);
-             if (json.containsKey(name)) return json.get(name);
+            if (json.containsKey(name)) return json.get(name);
         }
         return null;
     }
@@ -97,21 +97,21 @@ public class MyHttpSesssion implements HttpSession {
         if (sessionId == null) {
             sessionId = thread.get();
             if (sessionId == null) {
-                 sessionId = "zhou01" + UUID.randomUUID();
-                 writeCookId(sessionId);
-                 thread.set(sessionId);
+                sessionId = "zhou01" + UUID.randomUUID();
+                writeCookId(sessionId);
+                thread.set(sessionId);
             }
         }
-        request.getSession().setAttribute(name,value);
+        request.getSession().setAttribute(name, value);
         JSONObject json = new JSONObject();
-        json.put(name,value);
-        redisTemplate.opsForList().leftPush(sessionId,json);
+        json.put(name, value);
+        redisTemplate.opsForList().leftPush(sessionId, json);
     }
 
-    private void writeCookId (String sessionId) {
-           Cookie cookie = new Cookie("sessionId",sessionId);
-           cookie.setPath("/");//在任何访问路径下面都可以访问的到
-           response.addCookie(cookie);
+    private void writeCookId(String sessionId) {
+        Cookie cookie = new Cookie("sessionId", sessionId);
+        cookie.setPath("/");//在任何访问路径下面都可以访问的到
+        response.addCookie(cookie);
     }
 
     private String getSessionCookId() {
@@ -119,9 +119,9 @@ public class MyHttpSesssion implements HttpSession {
         //RestTemplate restTemplate = new RestTemplate(httpHeaders);
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-             if ("sessionId".equals(cookie.getName())){
-                  return cookie.getValue();
-             }
+            if ("sessionId".equals(cookie.getName())) {
+                return cookie.getValue();
+            }
         }
         return null;
     }

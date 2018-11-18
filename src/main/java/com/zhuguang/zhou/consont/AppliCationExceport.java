@@ -4,7 +4,7 @@ public class AppliCationExceport extends RuntimeException {
 
     private JavaCode javaCode;
 
-    public  AppliCationExceport(JavaCode javaCode) {
+    public AppliCationExceport(JavaCode javaCode) {
         this.javaCode = javaCode;
     }
 

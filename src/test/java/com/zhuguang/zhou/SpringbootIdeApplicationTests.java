@@ -27,8 +27,8 @@ public class SpringbootIdeApplicationTests {
         JavaCode.SUCCLE.getCode();*/
         System.out.println("加载配置文件准备为mybatis...");
         List<UserDto> userInfo = userService01.getUserInfo("张小明");
-        userInfo.forEach(user->{
-            System.out.println("name:" + user.getUsername() + "："+ "生日:" + user.getBirthday());
+        userInfo.forEach(user -> {
+            System.out.println("name:" + user.getUsername() + "：" + "生日:" + user.getBirthday());
         });
     }
 }

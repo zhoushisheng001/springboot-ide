@@ -24,26 +24,26 @@ public class UserLongin {
     private RestTemplate restTemplate;
 
     @RequestMapping("/login")
-    public String login (HttpServletRequest request, HttpServletResponse response) {
-            HttpSession session = request.getSession();
+    public String login(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         logger.info("name:" + name + "password:" + password);
-        session.setAttribute("name",name);
-        session.setAttribute("password",password);
+        session.setAttribute("name", name);
+        session.setAttribute("password", password);
         return "ok";
     }
 
     @RequestMapping("/getUserInfo")
     public String getUserInfo(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String name = (String)session.getAttribute("name");
+        String name = (String) session.getAttribute("name");
         String password = (String) session.getAttribute("password");
         logger.info("=======" + "name:" + name + "password:" + password + "======");
         String url = "http://localhost:8082/user/getUserInfo";
         User user = new User();
         user.setName("nihao");
-        restTemplate.postForObject(url,user,String.class);
+        restTemplate.postForObject(url, user, String.class);
         return "ok";
     }
 }
